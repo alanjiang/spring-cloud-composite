@@ -1,0 +1,17 @@
+server:
+  port: 8761
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@localhost:${server.port}/eureka/
+    registerWithEureka: false #不向注册中心注册自己
+    fetchRegistry: false # 是否检索服务
+  server:
+    waitTimeInMsWhenSyncEmpty: 0
+spring:
+  security:
+     basic:
+       enabled: true
+     user:
+       name: eureka
+       password: eureka

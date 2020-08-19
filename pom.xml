@@ -1,0 +1,20 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.study.spring.cloud</groupId>
+  <artifactId>spring-cloud-composite</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  
+  
+  
+  <modules>
+      <module>spring-cloud-config-client-base</module>
+      <module>spring-cloud-config-client-side</module>
+       <module>spring-cloud-config-server-side</module>
+      <module>spring-cloud-eureka-side</module>
+      <module>spring-cloud-feignclient-call-side</module>
+      <module>spring-cloud-gateway-side</module>
+      
+  </modules>
+  
+</project>

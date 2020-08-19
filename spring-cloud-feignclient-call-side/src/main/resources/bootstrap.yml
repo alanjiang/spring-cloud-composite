@@ -1,0 +1,57 @@
+server:
+  port: 8901
+
+ek:
+  eureka:
+    user: eureka
+    password: eureka
+spring:
+   profiles:
+     active: dev
+   kafka:
+    bootstrap-servers: 52.83.89.60:9093
+   application:
+     name: feignclient
+   cloud:
+     consul:
+        discovery:
+         enabled: true
+     bus:
+      refresh:
+        enabled: true
+     config:
+       uri: http://localhost:8888/ #config server uri
+       profile: dev
+       label: master
+       discovery:
+         enabled: true
+         serviceId: configserver
+management:
+  server:
+    port: 8761
+  security:
+     enabled: true
+  endpoints: 
+     web:
+       exposure:
+         include: "*"
+        
+eureka:
+ client:
+    serviceUrl:
+       defaultZone: http://${ek.eureka.user}:${ek.eureka.password}@localhost:8761/eureka/
+    registerWithEureka: true
+    fetchRegistry: true 
+          
+# For demo only allow more hystrix connections
+hystrix:
+  stream:
+    maxConcurrentConnections: 20
+    bus:
+      enabled: true
+logging:
+  level:
+    com.netflix.discovery: 'DEBUG'
+    
+encrypt:
+    key: mykey   

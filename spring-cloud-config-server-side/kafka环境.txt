@@ -1,0 +1,102 @@
+单节点单BROKER部署和使用
+ 
+
+Kafka架构
+
+producer: 生产者
+consumer: 消费者
+broker: 类似容器,存放数据
+topic: 类似标签
+1.创建文件夹
+
+mkdir -p /usr/local/kafka/data  /usr/local/kafka/logs
+cd /usr/local/kafka
+2.下载Flume http://kafka.apache.org/downloads
+1
+wget http://apache.mirror.iphh.net/kafka/2.5.0/kafka_2.13-2.5.0.tgz
+3.解压
+
+tar -zvxf kafka_2.13-2.5.0.tgz
+4.修改配置文件
+1
+2
+3
+4
+5
+vim /etc/profile
+export KAFKA_HOME=/usr/local/kafka/kafka_2.13-2.5.0
+export PATH=$KAFKA_HOME/bin:$PATH
+ 
+source /etc/profile
+5.修改配置
+1
+2
+3
+4
+5
+6
+7
+cd /usr/local/kafka/kafka_2.13-2.5.0/config
+vim server.properties
+broker.id=0   # broker id 这个不能重复
+listeners=PLAINTEXT://:9092   # 取消注释  默认端口是9092
+host.name=0.0.0.0   # ip
+log.dirs=/usr/local/kafka/logs  # log文件放置路径
+zookeeper.connect=localhost:2181   # zookeeper连接信息
+6.启动kafka
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+kafka-server-start.sh -daemon $KAFKA_HOME/config/server.properties
+-daemon: 后台启动
+config/server.properties: server.properties文件路径
+kafka-server-stop.sh  # 关闭kafka
+ 
+jps  查看进程  jps -m: 查看比较详细的信息
+kafka
+ 
+启动报错: kafka.common.InconsistentClusterIdException: The Cluster ID BmhgroWiQEWltKkCY_4u4Q doesn't match stored clusterId Some(3BVX0S4nTjSvbCvqUU3WGQ) in meta.properties. The broker is trying to join the wrong cluster. Configured zookeeper.connect may be wrong.
+    在Kafka config目录中，打开kafka config属性文件，让server.properties查找具有参数log.dirs =的日志路径目录，然后转到日志路径目录并在其中找到文件meta.properties。打开文件meta.properties并更新cluster.id =或从日志路径目录中删除此文件或所有日志文件，然后重新启动kafka。（这个方法并没有解决我的问题）
+ 
+kafka-server-stop.sh $KAFKA_HOME/config/server.properties  # 关闭kafka
+ 
+cd /usr/local/kafka/kafka_2.13-2.5.0/logs
+cat server.log | tail -n 200  # 查看kafka启动时产生日志
+7.创建一个topic
+1
+2
+3
+4
+5
+6
+7
+kafka-topics.sh --create --bootstrap-server 192.168.104.94:9092 --replication-factor 1 --partitions 1 --topic hello_topic
+--create: 创建
+--replication-factor: 副本数量
+--partitions: 分区数量
+--bootstrap-server: 制定消费者
+ 
+kafka-topics.sh --delete --bootstrap-server 192.168.104.94:9092 --topic hello_topic  # 删除topic
+8.查看所有topic
+1
+kafka-topics.sh --list --bootstrap-server 192.168.104.94:9092
+9.发送消息
+1
+2
+kafka-console-producer.sh --bootstrap-server 192.168.104.94:9092 --topic hello_topic  # 生产消息
+kafka-console-consumer.sh --bootstrap-server 192.168.104.94:9092 --topic hello_topic --from-beginning   # 消费消息  # --from-beginning: 从头开始消费  每次启动都要把一起的消息在消费一遍
+10.查看topic信息
+1
+kafka-topics.sh --describe --bootstrap-server 192.168.104.94:9092 --topic hello_topic  # --topic hello_topic: 不带这个就看所有的topic
