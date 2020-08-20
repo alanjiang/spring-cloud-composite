@@ -5,6 +5,8 @@ spring-cloud-config-server-side/target
 spring-cloud-eureka-side/target
 spring-cloud-feignclient-call-side/target
 spring-cloud-gateway-side/target
+spring-cloud-kafka-side/target
+spring-boot-webflux/target
 .DS_Store
 .classpath
 .settings

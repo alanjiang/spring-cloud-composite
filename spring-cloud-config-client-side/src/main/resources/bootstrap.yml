@@ -9,7 +9,7 @@ spring:
    profiles:
      active: dev
    kafka:
-    bootstrap-servers: 52.83.89.60:9093
+    bootstrap-servers: localhost:9092
    application:
      name: configclient
    cloud:
