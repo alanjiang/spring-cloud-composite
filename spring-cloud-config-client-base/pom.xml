@@ -72,7 +72,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
-        
+      
         
           
 		<!--  end the spring-cloud-bus -->

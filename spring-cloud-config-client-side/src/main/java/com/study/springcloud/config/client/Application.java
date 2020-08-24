@@ -27,7 +27,11 @@ public class Application {
         return c;
 	}
 	
-	
+	@Bean
+	MQListener mQListener(){
+		
+		return new MQListener();
+	}
 	
 
 	

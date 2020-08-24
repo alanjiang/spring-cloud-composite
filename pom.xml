@@ -14,7 +14,7 @@
       <module>spring-cloud-eureka-side</module>
       <module>spring-cloud-feignclient-call-side</module>
       <module>spring-cloud-gateway-side</module>
-      
+      <module>spring-cloud-kafka-side</module>
   </modules>
   
 </project>

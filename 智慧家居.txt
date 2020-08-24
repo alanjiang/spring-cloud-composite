@@ -1,0 +1,7 @@
+
+for project in schedule-service union-service push-service user-service update-service smart-life-cas message-router business-service message-service scene-service file-service smart-life-framework logging-service device-service;
+do 
+  
+  git clone http://10.18.69.218/smart-life/$project.git
+
+done

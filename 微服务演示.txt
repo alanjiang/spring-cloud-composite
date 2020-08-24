@@ -39,13 +39,19 @@ java  -Dserver.port=9001 -Dspring.application.name=configclient -jar    /Users/p
 4,启动客户端调用服务
 
 
-java -Dserver.port=8091 -jar /Users/zhangxiao/eclipse-workspace/spring-cloud-feignclient/target/spring-cloud-feignclient-0.0.1-SNAPSHOT.jar 
+java -Dserver.port=8091 -jar  /Users/pengjiang/spring-cloud-composite/spring-cloud-feignclient-call-side/target/spring-cloud-feignclient-call-side-0.0.1-SNAPSHOT.jar
 
 
 
 
+5, 启动kafka服务发消息
 
 
+java -Dserver.port=8093 -jar  /Users/pengjiang/spring-cloud-composite/spring-cloud-kafka-side/target/spring-cloud-kafka-side-0.0.1-SNAPSHOT.jar 
+
+
+
+http://localhost:8093/sendmsg
 
 刷新所有微服务：
 
@@ -142,18 +148,14 @@ https://zhuanlan.zhihu.com/p/133636384
   
 kafka.common.InconsistentClusterIdException: The Cluster ID q3LP6TM6THioLSeD8B8BlA doesn't match stored clusterId Some(gEMB23NxR46axobvuamr2w) in meta.properties
 
-  brew services start zookeeper
-
-  zkServer start
-
-  brew services start kafka
-
-  zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties & kafka-server-start /usr/local/etc/kafka/server.properties
+brew services start zookeeper
+zkServer start
+brew services start kafka
+zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties & kafka-server-start /usr/local/etc/kafka/server.properties
 
 
 
 /usr/local/var/lib/logs
-
 dataDir=/usr/local/var/lib/zookeeper
 
 
