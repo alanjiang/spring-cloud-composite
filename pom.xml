@@ -15,6 +15,20 @@
       <module>spring-cloud-feignclient-call-side</module>
       <module>spring-cloud-gateway-side</module>
       <module>spring-cloud-kafka-side</module>
+      
+      
+      
+      <module>spring-cloud-security-oauth-click</module>
+<module>spring-cloud-security-oauth-custom-error</module>
+<module>spring-cloud-security-oauth-logout</module>
+<module>spring-cloud-security-oauth-simple</module>
+<module>spring-cloud-security-oauth-two-providers</module>
+      
+      
+      
+      
+      
+      
   </modules>
   
 </project>

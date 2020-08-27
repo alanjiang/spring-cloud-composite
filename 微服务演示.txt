@@ -159,15 +159,48 @@ zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties & kafka-server-
 dataDir=/usr/local/var/lib/zookeeper
 
 
+参考：
+
+
+原型文章：
+
+https://github.com/lexburner/oauth2-demo
 
 
 
+1，直接访问QQ功能：
+http://localhost:8080/qq/info/250577914/
+<oauth>
+  <error_description>Full authentication is required to access this resource</error_description>
+  <error>unauthorized</error>
+</oauth>
+
+2，尝试获取授权码:
+在QQ端想访问爱奇艺
+http://localhost:8080/oauth/authorize?client_id=aiqiyi&response_type=code&redirect_uri=http://localhost:8081/aiqiyi/qq/redirect
+
+跳转到登录页面：
+http://localhost:8080/login
+
+登录后,跳转到http://localhost:8081/aiqiyi/qq/redirect?code=vrHr61
+ 
+ 获取到授权码：
+ 
+{"access_token":"9de63253-efe2-4329-95bc-6b047cbed40b","token_type":"bearer","refresh_token":"d490df59-0f19-42ff-bad7-0c6274ee8ac4","expires_in":43024,"scope":"get_user_info get_fanslist"}
+
+
+http://localhost:8080/qq/info/250577914?access_token=86180b39-c149-48f6-b6e6-4de0129f8530
 
 
 
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx535c47c4a3ad5ea1
+	     &redirect_uri=https://www.dianliaome.com/wx/getOpenId&response_type=code&scope=snsapi_userinfo
+	     &state=WXDC$2299$A30#wechat_redirect
+	     state=SOCIAL$2059$A01
 
 
+https://github.com/spring-guides/tut-spring-boot-oauth2
 
 
-
+ pg_ctl -D /Users/pengjiang/softwares/postgres  -l /Users/pengjiang/softwares/postgres/server.log start
 

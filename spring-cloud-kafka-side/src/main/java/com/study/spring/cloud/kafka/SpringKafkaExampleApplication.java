@@ -10,10 +10,5 @@ public class SpringKafkaExampleApplication {
 		SpringApplication.run(SpringKafkaExampleApplication.class, args);
 	}
 
-	
-	@Bean
-	Listener listener(){
-		
-		return new Listener();
-	}
+
 }

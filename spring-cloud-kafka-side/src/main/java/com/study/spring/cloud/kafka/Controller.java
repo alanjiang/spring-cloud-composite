@@ -13,14 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Controller {
-   
 	@Autowired
 	private KafkaTemplate<String, String> kafkaTemplate;
-	
-	
 	@RequestMapping("/sendmsg")
     public String sendmsg() {
-		
 		for (int i = 0; i < 3; i++) {
 			ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send("topic1","key:"+1,
 					"Messsage:" + i);
@@ -31,14 +27,13 @@ public class Controller {
 					System.out.println("key="+ pr.key()+",value="+pr.value());
 					System.out.println("Sent message: " + result);
 				}
-
 				@Override
 				public void onFailure(Throwable ex) {
 					System.out.println("Failed to send message");
 				}
 			});
 		}
-		
+		/*
 		for (int i = 0; i < 3; i++) {
 			ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send("topic2","key:"+1,
 					"Messsage:" + i);
@@ -49,14 +44,13 @@ public class Controller {
 					System.out.println("key="+ pr.key()+",value="+pr.value());
 					System.out.println("Sent message: " + result);
 				}
-
 				@Override
 				public void onFailure(Throwable ex) {
 					System.out.println("Failed to send message");
 				}
 			});
 		}
-		
+		*/
 		
 		return "kafka msgs sent!";
 

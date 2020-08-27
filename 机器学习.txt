@@ -1,0 +1,3 @@
+1,编辑器
+
+pip3 install jupyterlab
