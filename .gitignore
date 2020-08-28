@@ -25,5 +25,5 @@ spring-cloud-security-oauth-custom-error/target
 spring-cloud-security-oauth-logout/target		
 spring-cloud-config-server-side/target			
 spring-cloud-security-oauth-simple/target
-../target
-
+./*/target
+spring-security-oauth2-side/target
